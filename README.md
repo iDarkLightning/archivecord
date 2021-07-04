@@ -1,35 +1,45 @@
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui)
+# ArchiveCord
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app.
+ArchiveCord is a client to view applications archived using [LiteBot's](https://github.com/iDarkLightning/LiteBot) standard archives plugin!
 
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Theme and ColorMode containers so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+## Deploying
 
-## Preview
+If you would like to host your own version of this client, you can do so like such:
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-chakra-ui)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui&project-name=with-chakra-ui&repository-name=with-chakra-ui)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+First, clone the repository
 
 ```bash
-npx create-next-app --example with-chakra-ui with-chakra-ui-app
-# or
-yarn create next-app --example with-chakra-ui with-chakra-ui-app
+git clone https://github.com/iDarkLightning/archivecord.git
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Next, fill out your `ENVIRONMENT_VARIABLES`. To do this, copy `.env` to `env.local` and fill it out
 
-## Notes
+- `DISCORD_CLIENT_ID`: The Client ID of your discord application
+- `DISCORD_CLIENT_SECRET`: The Client Secret of your discord application
 
-Chakra has supported Gradients and RTL in `v1.1`. To utilize RTL, [add RTL direction and swap](https://chakra-ui.com/docs/features/rtl-support).
+The above fields can be found through your discord developer portal:
+![Example Image](https://cdn.discordapp.com/attachments/439793596003254286/861356286309040148/unknown.png)
 
-If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl">` inside `_document.js`.
+- `JWT_SECRET`: The secret token that will be used to sign session tokens and make requests to LiteBot, this must match the `api_litebot` field in your configuration for LiteBot
+- `LITEBOT_URL`: The route that your LiteBot server is running on, by default this will be `http://localhost:8000` if you are deploying this on the same machine as LiteBot
+
+Now, if you do not have `node.js` installed, then you can install it from [here](https://nodejs.org/en/).
+
+Whilst you can run the server via `npm`, it is reccomended to use `yarn`. You can install `yarn` using the following command after installing node.
+
+```bash
+npm install --global yarn
+```
+
+Now, you can start the server like such:
+
+```
+yarn build
+yarn start
+```
+
+If you have issues, feel free to reach out to me via the [LiteTech Discord Server](https://discord.litetech.cf)
+
+## Credits
+
+The UI/UX credits go to `@owen3242`.
