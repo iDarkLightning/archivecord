@@ -17,12 +17,23 @@ const resolveColor = (color: number) => {
 
 const Message: React.FC<Props> = ({ message, style }) => {
   return (
-    <Flex ml={5} mb={3} mt={2} mr={3} style={style}>
+    <Flex
+      ml={5}
+      mb={3}
+      mt={2}
+      mr={3}
+      style={style}
+      _hover={{ bgColor: "darkest" }}
+    >
       <Avatar src={message.author.avatar} mr={3} />
       <Flex flexDirection="column">
         <Flex>
           <Center>
-            <Text color={resolveColor(message.author.color)} fontWeight="500">
+            <Text
+              color={resolveColor(message.author.color)}
+              fontWeight="500"
+              _hover={{ textDecoration: "underline", cursor: "pointer" }}
+            >
               {message.author.name}
             </Text>
             <Text ml={2} fontSize={11} color="grayText">

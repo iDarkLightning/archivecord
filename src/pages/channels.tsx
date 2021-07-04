@@ -21,7 +21,6 @@ import ReactList from "react-list";
 import ChannelName from "../components/ChannelName";
 import Layout from "../components/Layout";
 import Message from "../components/Message";
-import { useAuth } from "../utils/useIsAuth";
 import {
   Channel,
   ChannelInfo,
@@ -31,13 +30,31 @@ import {
 import PinsMenu from "../components/PinsMenu";
 
 interface Props {
+  authed?: boolean;
   channels?: ChannelInfo[];
   token?: string;
   litebotURL?: string;
 }
 
-const Channels: React.FC<Props> = ({ channels, token, litebotURL }) => {
-  useAuth();
+const Channels: React.FC<Props> = ({ authed, channels, token, litebotURL }) => {
+  if (!authed)
+    return (
+      <Layout showNav>
+        <Flex flex={1} bgColor="medium" overflow="hidden">
+          <Center width="100%">
+            <Text
+              bgGradient="linear(to-l, #7928CA,#FF0080)"
+              bgClip="text"
+              fontSize="6xl"
+              fontWeight="extrabold"
+            >
+              Please log in to view the archives!
+            </Text>
+          </Center>
+        </Flex>
+      </Layout>
+    );
+
   const [displayedChannelID, setDisplayedChannelID] = useState<string>("");
   const [displayedChannel, setDisplayedChannel] = useState<Channel | null>(
     null
@@ -269,9 +286,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   if (!session)
     return {
-      redirect: {
-        permanent: false,
-        destination: "/"
+      props: {
+        authed: false
       }
     };
 
@@ -290,6 +306,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   );
   return {
     props: {
+      authed: true,
       channels: res.data,
       token: token,
       litebotURL: process.env.LITEBOT_URL

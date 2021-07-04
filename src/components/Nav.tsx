@@ -1,12 +1,10 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { signIn, useSession } from "next-auth/client";
-import { useRouter } from "next/router";
 import React from "react";
 import NavMenu from "./NavMenu";
 
 function Nav() {
   const [session, _] = useSession();
-  const router = useRouter();
   return (
     <Box
       bgColor="darkest"
@@ -23,7 +21,7 @@ function Nav() {
         justifyContent="space-between"
       >
         <Heading
-          onClick={() => router.push("/")}
+          onClick={() => window.location.assign("/")}
           _hover={{ cursor: "pointer" }}
         >
           archivecord
