@@ -7,7 +7,6 @@ import axios from "axios";
 
 function App({ Component, pageProps }: AppProps) {
   const { online } = pageProps;
-  console.log(online);
   return (
     <ThemeProvider theme={theme}>
       <CSSReset />
@@ -26,7 +25,6 @@ App.getInitialProps = async () => {
   try {
     await axios.get(process.env.LITEBOT_URL);
   } catch (err) {
-    console.log(err.response);
     return { pageProps: { online: err.response !== undefined } };
   }
 };
