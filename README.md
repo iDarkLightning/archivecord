@@ -31,9 +31,15 @@ Whilst you can run the server via `npm`, it is reccomended to use `yarn`. You ca
 npm install --global yarn
 ```
 
+Now, to install all the required dependencies, execute:
+
+```bash
+yarn
+```
+
 Now, you can start the server like such:
 
-```
+```bash
 yarn build
 yarn start
 ```
